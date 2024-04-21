@@ -1,0 +1,45 @@
+#pragma once
+
+/**
+ * -- カワプレの Virtual Desktop API --
+ *
+ * Public interface implementation for {{ classDef.getStandardName() }}.
+ *
+ * Generated at {{ GeneratorApi.getFormattedGenerationTimeNow() }}.
+ * Please see the source code at {{ GeneratorApi.constants.homepage }}
+ * for more information.
+ */
+
+#include "../base.h"
+#include <ObjectArray.h>
+
+typedef void IVirtualDesktopPlaceholder;
+typedef void IApplicationViewPlaceholder;
+typedef void * HSTRINGPLACEHOLDER;
+
+namespace Kawapure
+{
+namespace VirtualDesktops
+{
+    /*
+     * Public interface for {{ classDef.getStandardName() }}.
+     */{#
+        Template information:
+            A class name is generated here based on the class's formal name:
+                IProxy[FormalName]
+
+            For example, the corresponding class to IVirtualDesktopManagerInternal is:
+                IProxyVirtualDesktopManager
+
+            This generates a pure interface, which is implemented by version-specific
+            proxies. This creates an abstraction for users, who don't need to think
+            about the OS version very much when using the object.
+    #}
+	struct {{ classDef.formatNameAs("INTERFACE", "Proxy") }}
+	{
+        {% for method in classDef.getAllMethods() %}
+		virtual {{ method.getCppReturnType()  }} {{ method.getName() }}({{ method.getCppArgumentsForContext() }}) = 0;
+        {% endfor %}
+	};
+} // namespace VirtualDesktops
+} // namespace Kawapure
